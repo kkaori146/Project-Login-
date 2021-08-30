@@ -45,10 +45,27 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10
   },
-  status:{},
-  cupomArea:{},
-  cupomTitle:{},
-  cupomCode:{}
+  status:{
+    margin: 50,
+    color: '#FFF',
+    fontSize: 18,
+    textAlign: 'center'
+  },
+  cupomArea:{
+    backgroundColor: '#FFF',
+    borderRadius: 5,
+    padding: 30
+  },
+  cupomTitle:{
+    fontSize: 18,
+    textAlign: 'center',
+    marginBottom: 20
+
+  },
+  cupomCode:{
+    textAlign:'center',
+    fontSize: 40
+  }
   
 });
 
