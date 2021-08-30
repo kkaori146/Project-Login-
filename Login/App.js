@@ -1,112 +1,55 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { SafeAreaView, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const App = () => {
+  return(
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.header}>Discount UltraBlaster</Text>
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+      <TextInput style={styles.input} placeholder="Enter your email" />
+      <TextInput style={styles.input} placeholder="Type your password" />
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+      <Button title= "Verify" />
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+      <Text style={styles.status}>...</Text>
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+      <View style={styles.cupomArea}>
+        <Text style={styles.cupomTitle}>Coupon Code:</Text>
+        <Text style={styles.cupomCode}>GFDJGF529</Text>
+      </View>
+
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container:{
+    flex:1,
+    backgroundColor: '#333',
+    padding: 20,
+    marginLeft: 15
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  header:{
+    color: '#FFF',
+    fontSize: 25,
+    textAlign: 'center',
+    marginBottom: 30
   },
-  sectionDescription: {
-    marginTop: 8,
+  input:{
+    height: 45,
     fontSize: 18,
-    fontWeight: '400',
+    color: '#FFF',
+    backgroundColor: '#555',
+    borderRadius: 5,
+    marginBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 10
   },
-  highlight: {
-    fontWeight: '700',
-  },
+  status:{},
+  cupomArea:{},
+  cupomTitle:{},
+  cupomCode:{}
+  
 });
 
 export default App;
