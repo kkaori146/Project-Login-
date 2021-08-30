@@ -1,23 +1,65 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { SafeAreaView, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
 const App = () => {
+
+  const[email, setEmail] = useState('');
+  const [password, setPassword]= useState('');
+
+  const [status, setStatus] = useState('');
+  const [showCupom, setShowCupom] = useState(false);
+
+  const handleVerifyLogin = async() => {
+    setStatus('');
+    setShowCupom(false);
+
+    const req = await fetch('https://api.b7web.com.br/loginsimples/', {
+      method: 'POST',
+      body: JSON.stringify({email, password}),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    });
+    const json = await req.json();
+    
+    if(json.status == 'ok') {
+      setStatus('Free Access!');
+      setShowCupom(true);
+    } else {
+      setStatus ('Access denied!');
+      setShowCupom(false);
+    }
+  }
+
   return(
     <SafeAreaView style={styles.container}>
       <Text style={styles.header}>Discount UltraBlaster</Text>
 
-      <TextInput style={styles.input} placeholder="Enter your email" />
-      <TextInput style={styles.input} placeholder="Type your password" />
+      <TextInput 
+      style={styles.input} 
+      placeholder="Enter your email" 
+      value={email}
+      onChangeText={t=>setEmail(t)}
+      
+      />
+      <TextInput 
+      style={styles.input} 
+      placeholder="Type your password" 
+      value={password}
+      onChangeText={t=>setPassword(t)}
+      secureTextEntry={true}
+      />
 
-      <Button title= "Verify" />
+      <Button title= "Verify" onPress={handleVerifyLogin} />
 
-      <Text style={styles.status}>...</Text>
+      <Text style={styles.status}>{status}</Text>
 
+      {showCupom &&
       <View style={styles.cupomArea}>
         <Text style={styles.cupomTitle}>Coupon Code:</Text>
         <Text style={styles.cupomCode}>GFDJGF529</Text>
       </View>
-
+      }
     </SafeAreaView>
   );
 }
